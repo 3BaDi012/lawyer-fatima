@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-brand-cream text-brand-ink antialiased;
+  }
+
+  [lang='ar'] body {
+    line-height: 1.7;
+    font-size: 1.0625rem;
+  }
+
+  [lang='en'] body {
+    line-height: 1.6;
+    font-size: 1.0625rem;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-brand-gold;
+  }
+}
+
+@layer components {
+  [lang='ar'] .prose {
+    line-height: 1.75;
+  }
+
+  [lang='en'] .prose {
+    line-height: 1.65;
+  }
+
+  .prose-brand {
+    @apply prose prose-neutral max-w-measure prose-headings:font-semibold prose-a:text-brand-navy prose-a:no-underline hover:prose-a:underline;
+  }
+}

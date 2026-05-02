@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import aboutAr from '../../content/pages/about.ar.md?raw';
+import aboutEn from '../../content/pages/about.en.md?raw';
+import seo from '../../content/data/seo.json';
+import team from '../../content/data/team.json';
+import ui from '../../content/data/ui.json';
+import { localeHref } from '../../utils/locale-path';
+import logo from '../../assets/logo.jpg';
+import { renderMarkdown } from '../../utils/markdown';
+import { isLang, type Lang } from '../../utils/types';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
+}
+
+const raw = Astro.params.lang;
+if (!isLang(raw)) {
+  throw new Error('Invalid language');
+}
+
+const lang: Lang = raw;
+const t = ui[lang];
+const s = seo[lang];
+const md = lang === 'ar' ? aboutAr : aboutEn;
+const html = renderMarkdown(md);
+const lead = team[0];
+if (!lead) {
+  throw new Error('team.json must include at least one lawyer');
+}
+
+const bioParas = lang === 'ar' ? lead.bioParagraphsAr : lead.bioParagraphsEn;
+const license = lead.licenseNumber.trim() || t.licensePending;
+---
+
+<SiteLayout lang={lang} title={s.aboutTitle} description={s.aboutDescription} pathKey="about">
+  <div class="mx-auto max-w-6xl px-6 py-14 sm:py-16">
+    <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">{t.aboutHeading}</h1>
+
+    <div class="prose-brand mt-10 max-w-measure" set:html={html} />
+
+    <section class="mt-16 border-t border-brand-navy/10 pt-14" aria-labelledby="lead-lawyer">
+      <h2 id="lead-lawyer" class="text-2xl font-semibold text-brand-navy sm:text-3xl">
+        {t.aboutLawyerHeading}
+      </h2>
+
+      <div class="mt-8 grid gap-8 lg:grid-cols-[220px_1fr] lg:items-start">
+        <div class="space-y-3">
+          <Image
+            src={logo}
+            alt={lang === 'ar' ? lead.photoAltAr : lead.photoAltEn}
+            width={220}
+            height={220}
+            loading="lazy"
+            decoding="async"
+            class="w-full max-w-[220px] rounded-md object-contain ring-1 ring-brand-gold/35"
+          />
+          <p class="text-xs text-brand-muted">{t.aboutPhotoNote}</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-brand-navy">{lang === 'ar' ? lead.nameAr : lead.nameEn}</h3>
+          <p class="mt-1 text-sm font-medium text-brand-muted">{lang === 'ar' ? lead.titleAr : lead.titleEn}</p>
+          <p class="mt-3 text-sm text-brand-muted">
+            <span class="font-semibold text-brand-ink">{t.aboutLicenseLabel}:</span>
+            <span class="ms-2 font-mono">{license}</span>
+          </p>
+
+          {
+            bioParas.length ? (
+              <div class="mt-6 space-y-4 text-brand-muted">
+                {bioParas.map((p) => (
+                  <p>{p}</p>
+                ))}
+              </div>
+            ) : (
+              <p class="mt-6 text-brand-muted">{t.aboutLawyerPlaceholder}</p>
+            )
+          }
+
+          <div class="mt-6">
+            <p class="text-sm font-semibold text-brand-navy">{t.aboutExpertiseHeading}</p>
+            <ul class="mt-3 list-disc space-y-2 ps-6 text-brand-muted">
+              {(lang === 'ar' ? lead.expertiseAr : lead.expertiseEn).map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-16 rounded-lg border border-brand-navy/10 bg-white px-8 py-10 shadow-sm">
+      <h2 class="text-xl font-semibold text-brand-navy">{t.aboutCtaHeading}</h2>
+      <a
+        class="mt-6 inline-flex items-center justify-center rounded-md bg-brand-navy px-5 py-3 text-sm font-semibold text-brand-cream no-underline hover:bg-brand-navy/90"
+        href={localeHref(lang, 'contact')}
+      >
+        {t.aboutCtaButton}
+      </a>
+    </section>
+  </div>
+</SiteLayout>

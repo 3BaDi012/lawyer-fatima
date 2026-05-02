@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.jpg';
+import site from '../content/data/site.json';
+import ui from '../content/data/ui.json';
+import type { Lang } from '../utils/types';
+import type { PagePathKey } from '../utils/paths';
+import { localeHref } from '../utils/locale-path';
+
+interface Props {
+  lang: Lang;
+  pathKey: PagePathKey;
+}
+
+const { lang, pathKey } = Astro.props;
+const t = ui[lang];
+const other: Lang = lang === 'ar' ? 'en' : 'ar';
+const toggleHref = localeHref(other, pathKey);
+
+const nav = [
+  { href: localeHref(lang, ''), label: t.navHome, active: pathKey === '' },
+  { href: localeHref(lang, 'about'), label: t.navAbout, active: pathKey === 'about' },
+  { href: localeHref(lang, 'services'), label: t.navServices, active: pathKey === 'services' },
+  { href: localeHref(lang, 'contact'), label: t.navContact, active: pathKey === 'contact' },
+] as const;
+---
+
+<header class="border-b border-brand-navy/10 bg-brand-cream/95 backdrop-blur supports-[backdrop-filter]:bg-brand-cream/80">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5">
+    <a
+      href={localeHref(lang, '')}
+      class="group flex max-w-xl items-center gap-4 text-brand-navy no-underline hover:text-brand-navy"
+    >
+      <Image
+        src={logo}
+        alt=""
+        role="presentation"
+        width={72}
+        height={72}
+        loading="eager"
+        decoding="async"
+        class="h-14 w-14 shrink-0 rounded-sm object-contain ring-1 ring-brand-gold/35"
+      />
+      <span class="max-w-[min(52ch,70vw)] text-start text-sm font-semibold leading-snug tracking-tight group-hover:underline sm:text-base">
+        {lang === 'ar' ? site.officeNameAr : site.officeNameEn}
+      </span>
+    </a>
+
+    <div class="flex flex-wrap items-center justify-end gap-3 sm:gap-4">
+      <nav aria-label={t.navAriaLabel} class="flex flex-wrap items-center gap-1 sm:gap-2">
+        {
+          nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'rounded-md px-3 py-2 text-sm font-medium no-underline transition-colors hover:bg-brand-navy/5',
+                item.active ? 'bg-brand-navy/10 text-brand-navy' : 'text-brand-ink',
+              ]}
+              aria-current={item.active ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a
+          href={toggleHref}
+          class="rounded-md border border-brand-navy/15 bg-white px-3 py-2 text-sm font-semibold text-brand-navy no-underline hover:border-brand-gold/60"
+          hreflang={other}
+          lang={other}
+        >
+          {t.langSwitch}
+        </a>
+        <a
+          href={localeHref(lang, 'contact')}
+          class="inline-flex items-center justify-center rounded-md bg-brand-navy px-4 py-2 text-sm font-semibold text-brand-cream no-underline hover:bg-brand-navy/90"
+        >
+          {t.ctaContact}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

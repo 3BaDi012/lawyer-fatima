@@ -1,0 +1,112 @@
+---
+import { FileText, MapPinned } from 'lucide-astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import practiceAreas from '../../content/data/practice-areas.json';
+import seo from '../../content/data/seo.json';
+import site from '../../content/data/site.json';
+import ui from '../../content/data/ui.json';
+import { localeHref } from '../../utils/locale-path';
+import { isLang, type Lang } from '../../utils/types';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
+}
+
+const raw = Astro.params.lang;
+if (!isLang(raw)) {
+  throw new Error('Invalid language');
+}
+
+const lang: Lang = raw;
+const t = ui[lang];
+const s = seo[lang];
+---
+
+<SiteLayout lang={lang} title={s.homeTitle} description={s.homeDescription} pathKey="" includeLegalJsonLd>
+  <section class="relative overflow-hidden border-b border-brand-navy/10 bg-brand-navy text-brand-cream">
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[0.18]"
+      style="background-image: repeating-linear-gradient(135deg, rgba(176,141,87,0.35) 0 1px, transparent 1px 18px);"
+      aria-hidden="true"
+    />
+    <div class="relative mx-auto max-w-6xl px-6 py-16 sm:py-20">
+      <p class="text-sm font-semibold tracking-wide text-brand-gold/90">
+        {lang === 'ar' ? site.cityAr : site.cityEn}
+      </p>
+      <h1
+        class:list={[
+          'mt-4 max-w-4xl font-semibold tracking-tight text-brand-cream',
+          lang === 'ar' ? 'text-display-ar sm:text-display-ar-lg' : 'text-display-en sm:text-display-en-lg',
+        ]}
+      >
+        {lang === 'ar' ? site.officeNameAr : site.officeNameEn}
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg text-brand-cream/85 sm:text-xl">
+        {lang === 'ar' ? site.valuePropAr : site.valuePropEn}
+      </p>
+      <div class="mt-10 flex flex-wrap items-center gap-3 text-sm text-brand-cream/80">
+        <span class="inline-flex items-center gap-2">
+          <FileText class="h-5 w-5 text-brand-gold" aria-hidden="true" />
+          {lang === 'ar' ? site.homeEthosLineAr : site.homeEthosLineEn}
+        </span>
+        <span class="inline-flex items-center gap-2">
+          <MapPinned class="h-5 w-5 text-brand-gold" aria-hidden="true" />
+          {lang === 'ar' ? site.cityAr : site.cityEn}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 sm:py-20" aria-labelledby="practice-heading">
+    <div class="flex items-end justify-between gap-6">
+      <h2 id="practice-heading" class="text-3xl font-semibold text-brand-navy sm:text-4xl">
+        {t.homePracticeHeading}
+      </h2>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        practiceAreas.map((area) => (
+          <article class="flex h-full flex-col rounded-lg border border-brand-navy/10 bg-white p-6 shadow-sm">
+            <h3 class="text-xl font-semibold text-brand-navy">{lang === 'ar' ? area.titleAr : area.titleEn}</h3>
+            <p class="mt-3 flex-1 text-brand-muted">{lang === 'ar' ? area.cardSummaryAr : area.cardSummaryEn}</p>
+            <a
+              class="mt-6 inline-flex text-sm font-semibold text-brand-navy underline-offset-4 hover:underline"
+              href={`${localeHref(lang, 'services')}#${area.slug}`}
+            >
+              {t.homePracticeDetails}
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-y border-brand-navy/10 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+      <h2 class="text-3xl font-semibold text-brand-navy sm:text-4xl">{t.homeAboutTeaserHeading}</h2>
+      <p class="mt-6 max-w-3xl text-lg text-brand-muted">
+        {lang === 'ar' ? site.homeAboutTeaserBodyAr : site.homeAboutTeaserBodyEn}
+      </p>
+      <a
+        class="mt-8 inline-flex items-center justify-center rounded-md border border-brand-navy/15 bg-brand-cream px-5 py-3 text-sm font-semibold text-brand-navy no-underline hover:border-brand-gold/60"
+        href={localeHref(lang, 'about')}
+      >
+        {t.homeAboutTeaserCta}
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+    <div class="rounded-lg border border-brand-navy/10 bg-brand-navy px-8 py-10 text-brand-cream sm:px-10">
+      <h2 class="text-2xl font-semibold sm:text-3xl">{t.homeCtaHeading}</h2>
+      <p class="mt-4 max-w-2xl text-brand-cream/85">{t.homeCtaBody}</p>
+      <a
+        class="mt-8 inline-flex items-center justify-center rounded-md bg-brand-gold px-5 py-3 text-sm font-semibold text-brand-navy no-underline hover:bg-brand-gold/90"
+        href={localeHref(lang, 'contact')}
+      >
+        {t.homeCtaButton}
+      </a>
+    </div>
+  </section>
+</SiteLayout>

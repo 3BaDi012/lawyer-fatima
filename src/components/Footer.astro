@@ -1,0 +1,46 @@
+---
+import site from '../content/data/site.json';
+import ui from '../content/data/ui.json';
+import type { Lang } from '../utils/types';
+import { localeHref } from '../utils/locale-path';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+const year = new Date().getFullYear();
+const license = site.licenseOrCr.trim() || t.licensePending;
+---
+
+<footer class="border-t border-brand-navy/10 bg-brand-navy text-brand-cream">
+  <div class="mx-auto grid max-w-6xl gap-8 px-6 py-12 sm:grid-cols-3">
+    <div class="space-y-3">
+      <p class="text-base font-semibold leading-snug">{lang === 'ar' ? site.officeNameAr : site.officeNameEn}</p>
+      <p class="text-sm text-brand-cream/80">
+        <span class="block font-medium text-brand-cream">{t.footerLicenseLabel}</span>
+        <span class="mt-1 block font-mono text-brand-cream/95">{license}</span>
+      </p>
+    </div>
+
+    <div class="space-y-2 text-sm text-brand-cream/85">
+      <p class="font-semibold text-brand-cream">{t.footerContact}</p>
+      <p class="font-mono">{site.phoneDisplay}</p>
+      <p class="max-w-prose leading-relaxed">{lang === 'ar' ? site.addressAr : site.addressEn}</p>
+    </div>
+
+    <div class="flex flex-col items-start justify-between gap-4 sm:items-end sm:text-end">
+      <a
+        href={localeHref(lang, 'privacy')}
+        class="text-sm font-medium text-brand-cream/90 underline-offset-4 hover:text-brand-cream hover:underline"
+      >
+        {t.navPrivacy}
+      </a>
+      <p class="text-xs text-brand-cream/70">
+        © {year}
+        {lang === 'ar' ? site.shortNameAr : site.shortNameEn}. {t.footerRights}
+      </p>
+    </div>
+  </div>
+</footer>

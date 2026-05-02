@@ -1,0 +1,16 @@
+[
+  {
+    "id": "fatima-al-shehri",
+    "nameAr": "فاطمة الشهري",
+    "nameEn": "Fatima Al-Shehri",
+    "titleAr": "محامية",
+    "titleEn": "Lawyer",
+    "licenseNumber": "",
+    "photoAltAr": "صورة المحامية فاطمة الشهري",
+    "photoAltEn": "Photograph of lawyer Fatima Al-Shehri",
+    "bioParagraphsAr": [],
+    "bioParagraphsEn": [],
+    "expertiseAr": ["المحاماة", "التوثيق", "التسجيل العقاري"],
+    "expertiseEn": ["Advocacy", "Documentation", "Real estate registration"]
+  }
+]

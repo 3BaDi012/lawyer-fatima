@@ -1,0 +1,28 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import privacyAr from '../../content/pages/privacy.ar.md?raw';
+import privacyEn from '../../content/pages/privacy.en.md?raw';
+import seo from '../../content/data/seo.json';
+import { renderMarkdown } from '../../utils/markdown';
+import { isLang, type Lang } from '../../utils/types';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
+}
+
+const raw = Astro.params.lang;
+if (!isLang(raw)) {
+  throw new Error('Invalid language');
+}
+
+const lang: Lang = raw;
+const s = seo[lang];
+const md = lang === 'ar' ? privacyAr : privacyEn;
+const html = renderMarkdown(md);
+---
+
+<SiteLayout lang={lang} title={s.privacyTitle} description={s.privacyDescription} pathKey="privacy">
+  <div class="mx-auto max-w-6xl px-6 py-14 sm:py-16">
+    <article class="prose-brand" set:html={html} />
+  </div>
+</SiteLayout>

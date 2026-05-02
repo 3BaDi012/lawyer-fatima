@@ -1,0 +1,48 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import ui from '../content/data/ui.json';
+import '../styles/global.css';
+import type { Lang } from '../utils/types';
+import type { PagePathKey } from '../utils/paths';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  pathKey: PagePathKey;
+  includeLegalJsonLd?: boolean;
+}
+
+const { lang, title, description, pathKey, includeLegalJsonLd } = Astro.props;
+const t = ui[lang];
+const dir = lang === 'ar' ? 'rtl' : 'ltr';
+const fontClass = lang === 'ar' ? 'font-ar' : 'font-en';
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <BaseHead lang={lang} title={title} description={description} pathKey={pathKey} includeLegalJsonLd={includeLegalJsonLd} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class={fontClass}>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:inset-inline-start-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-brand-navy"
+    >
+      {t.skipToContent}
+    </a>
+    <Header lang={lang} pathKey={pathKey} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

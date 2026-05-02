@@ -1,0 +1,36 @@
+---
+import site from '../content/data/site.json';
+import ui from '../content/data/ui.json';
+import type { Lang } from '../utils/types';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+const q = lang === 'ar' ? site.mapsEmbedQueryAr : site.mapsEmbedQueryEn;
+const src = `https://maps.google.com/maps?q=${q}&hl=${lang}&z=17&output=embed`;
+---
+
+<div class="overflow-hidden rounded-lg border border-brand-navy/10 bg-white shadow-sm">
+  <iframe
+    title={t.contactMapHeading}
+    class="block h-[min(420px,60vw)] w-full"
+    src={src}
+    width="1200"
+    height="420"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  />
+  <div class="border-t border-brand-navy/10 bg-brand-cream/60 px-4 py-3">
+    <a
+      href={site.mapsShortUrl}
+      class="text-sm font-semibold text-brand-navy underline-offset-4 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {t.openInMaps}
+    </a>
+  </div>
+</div>

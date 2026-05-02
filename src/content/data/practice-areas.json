@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "advocacy",
+    "titleAr": "المحاماة",
+    "titleEn": "Advocacy",
+    "cardSummaryAr": "تمثيل أمام الجهات القضائية والإدارية وفق الإجراءات النظامية.",
+    "cardSummaryEn": "Representation before judicial and administrative bodies in line with statutory procedures.",
+    "paragraphsAr": [
+      "نقدم خدمات المحاماة المتعلقة بالمرافعة والمذكرات والمتابعة الإجرائية أمام المحاكم والجهات ذات الصلة، مع الالتزام بضوابط المهنة والسرية المهنية.",
+      "نركز على تقديم المستندات والمرافعات بشكل منظم، وعلى التواصل الواضح مع الموكّل بشأن الخطوات الإجرائية دون التعبير عن نتائج محددة لأي قضية."
+    ],
+    "paragraphsEn": [
+      "We provide advocacy services related to pleadings, written submissions, and procedural follow-up before courts and relevant authorities, in compliance with professional conduct rules and professional confidentiality.",
+      "We emphasize orderly preparation of documents and submissions, and clear communication with clients regarding procedural steps, without expressing specific outcomes for any matter."
+    ],
+    "handlesAr": [
+      "إعداد المذكرات والمرافعات وفق المطلوب نظامًا",
+      "متابعة الجلسات والإجراءات أمام الجهات المختصة",
+      "التنسيق مع الخبراء والجهات عند الحاجة وفق الإطار النظامي"
+    ],
+    "handlesEn": [
+      "Preparation of memoranda and pleadings as required by law",
+      "Follow-up of hearings and procedures before competent authorities",
+      "Coordination with experts and entities when needed within the statutory framework"
+    ],
+    "forWhomAr": "للأفراد والمنشآت التي تحتاج إلى تمثيل نظامي أمام الجهات القضائية أو الإدارية.",
+    "forWhomEn": "For individuals and entities that require statutory representation before judicial or administrative bodies."
+  },
+  {
+    "slug": "documentation",
+    "titleAr": "التوثيق",
+    "titleEn": "Documentation",
+    "cardSummaryAr": "إعداد وصياغة مستندات وفق متطلبات الجهات التوثيقية.",
+    "cardSummaryEn": "Preparation and drafting of documents in line with notarial authority requirements.",
+    "paragraphsAr": [
+      "نقدم استشارات ودعمًا في إعداد الوثائق التي تتطلبها إجراءات التوثيق، مع مراعاة الصياغة النظامية والشكلية المطلوبة.",
+      "لا يشمل ذلك إصدار صكوك التوثيق بذاتها حيث تقتصر ممارسة التوثيق على كاتب العدل، ويمكن التنسيق بشأن المتطلبات المسبقة للوثائق."
+    ],
+    "paragraphsEn": [
+      "We provide consultations and support in preparing documents required for notarial procedures, with attention to statutory wording and formal requirements.",
+      "This does not include issuing notarial instruments themselves, as notarial practice is limited to notaries public; we can coordinate on pre-requisites for documents."
+    ],
+    "handlesAr": [
+      "مراجعة الصياغات والمستندات قبل التوثيق عند الطلب",
+      "تنسيق المتطلبات الشكلية مع الجهات التوثيقية عند الحاجة",
+      "شرح الخطوات العامة للإجراءات التوثيقية"
+    ],
+    "handlesEn": [
+      "Review of drafts and documents prior to notarization when requested",
+      "Coordination of formal requirements with notarial authorities when needed",
+      "Explanation of general steps in notarial procedures"
+    ],
+    "forWhomAr": "لمن يحتاج إلى تجهيز مستندات أو فهم إجراءات التوثيق قبل مراجعة كاتب العدل.",
+    "forWhomEn": "For those who need to prepare documents or understand notarial steps before visiting a notary public."
+  },
+  {
+    "slug": "real-estate-registration",
+    "titleAr": "التسجيل العقاري",
+    "titleEn": "Real estate registration",
+    "cardSummaryAr": "دعم إجرائي واستشاري متعلق بالتسجيل العقاري وفق الأنظمة.",
+    "cardSummaryEn": "Procedural and consultative support related to real estate registration under applicable regulations.",
+    "paragraphsAr": [
+      "نقدم استشارات في مسائل التسجيل العقاري والمتطلبات المرتبطة بالجهات المختصة، مع التركيز على الامتثال للإجراءات.",
+      "قد يتضمن العمل مراجعة المستندات والتنسيق بشأن الخطوات دون ضمان زمني محدد لإنجاز أي طلب لدى الجهة المختصة."
+    ],
+    "paragraphsEn": [
+      "We provide consultations on real estate registration matters and requirements linked to competent authorities, with a focus on procedural compliance.",
+      "Work may include document review and coordination on steps, without stating a specific timeline for completion of any application with the competent authority."
+    ],
+    "handlesAr": [
+      "مراجعة المستندات المرتبطة بطلبات التسجيل عند الطلب",
+      "شرح الإجراءات العامة والمتطلبات الشائعة",
+      "التنسيق مع الجهات عندما يكون ذلك مناسبًا ضمن الإطار النظامي"
+    ],
+    "handlesEn": [
+      "Review of documents linked to registration applications when requested",
+      "Explanation of general procedures and common requirements",
+      "Coordination with authorities when appropriate within the statutory framework"
+    ],
+    "forWhomAr": "للمالكين والمستثمرين والمنشآت التي تتعامل مع صفقات أو تسجيلات عقارية.",
+    "forWhomEn": "For owners, investors, and entities dealing with transactions or real estate registrations."
+  }
+]

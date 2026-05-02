@@ -1,0 +1,59 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import practiceAreas from '../../content/data/practice-areas.json';
+import seo from '../../content/data/seo.json';
+import ui from '../../content/data/ui.json';
+import { isLang, type Lang } from '../../utils/types';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
+}
+
+const raw = Astro.params.lang;
+if (!isLang(raw)) {
+  throw new Error('Invalid language');
+}
+
+const lang: Lang = raw;
+const t = ui[lang];
+const s = seo[lang];
+---
+
+<SiteLayout lang={lang} title={s.servicesTitle} description={s.servicesDescription} pathKey="services">
+  <div class="mx-auto max-w-6xl px-6 py-14 sm:py-16">
+    <h1 class="text-4xl font-semibold text-brand-navy sm:text-5xl">{t.servicesHeading}</h1>
+    <p class="mt-5 max-w-3xl text-lg text-brand-muted">{t.servicesIntro}</p>
+
+    <div class="mt-14 space-y-16">
+      {
+        practiceAreas.map((area) => (
+          <section id={area.slug} class="scroll-mt-28 border-t border-brand-navy/10 pt-12 first:border-t-0 first:pt-0">
+            <h2 class="text-3xl font-semibold text-brand-navy sm:text-4xl">{lang === 'ar' ? area.titleAr : area.titleEn}</h2>
+
+            <div class="mt-6 max-w-measure space-y-4 text-lg text-brand-muted">
+              {(lang === 'ar' ? area.paragraphsAr : area.paragraphsEn).map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+
+            <div class="mt-8 grid gap-8 lg:grid-cols-2">
+              <div class="rounded-lg border border-brand-navy/10 bg-white p-6 shadow-sm">
+                <h3 class="text-lg font-semibold text-brand-navy">{t.servicesWhatWeHandle}</h3>
+                <ul class="mt-4 list-disc space-y-2 ps-6 text-brand-muted">
+                  {(lang === 'ar' ? area.handlesAr : area.handlesEn).map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="rounded-lg border border-brand-navy/10 bg-brand-cream/60 p-6">
+                <h3 class="text-lg font-semibold text-brand-navy">{t.servicesWhoFor}</h3>
+                <p class="mt-4 text-brand-muted">{lang === 'ar' ? area.forWhomAr : area.forWhomEn}</p>
+              </div>
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</SiteLayout>

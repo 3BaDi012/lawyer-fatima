@@ -1,0 +1,80 @@
+---
+import site from '../content/data/site.json';
+import type { Lang } from '../utils/types';
+import type { PagePathKey } from '../utils/paths';
+import { localeHref } from '../utils/locale-path';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  pathKey: PagePathKey;
+  includeLegalJsonLd?: boolean;
+}
+
+const { lang, title, description, pathKey, includeLegalJsonLd = false } = Astro.props;
+
+const canonicalPath = localeHref(lang, pathKey);
+const canonical = new URL(canonicalPath, Astro.site).toString();
+
+const arUrl = new URL(localeHref('ar', pathKey), Astro.site).toString();
+const enUrl = new URL(localeHref('en', pathKey), Astro.site).toString();
+
+const ogImage = new URL('/og.png', Astro.site).toString();
+
+const telephone = site.phoneTel;
+
+const jsonLd = includeLegalJsonLd
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'LegalService',
+      name: lang === 'ar' ? site.officeNameAr : site.officeNameEn,
+      telephone,
+      url: new URL(localeHref(lang, ''), Astro.site).toString(),
+      image: ogImage,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: lang === 'ar' ? site.addressAr : site.addressEn,
+        addressLocality: lang === 'ar' ? site.cityAr : site.cityEn,
+        addressCountry: 'SA',
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+          opens: '09:00',
+          closes: '17:00',
+        },
+      ],
+    }
+  : null;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="canonical" href={canonical} />
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<link rel="alternate" hreflang="ar" href={arUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="x-default" href={arUrl} />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={lang === 'ar' ? 'ar_SA' : 'en_US'} />
+<meta property="og:locale:alternate" content={lang === 'ar' ? 'en_US' : 'ar_SA'} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{jsonLd && (
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+)}
