@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://REPLACE_WITH_YOUR_PAGES_DOMAIN.pages.dev/sitemap.xml

@@ -1,15 +1,19 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { resolveSiteUrl } from './site-url.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
 const dist = path.join(root, 'dist');
 
-const SITE = String(process.env.PUBLIC_SITE_URL ?? 'https://REPLACE_WITH_YOUR_PAGES_DOMAIN.pages.dev').replace(
-  /\/$/,
-  '',
-);
+const SITE = resolveSiteUrl();
+if (!SITE) {
+  console.error(
+    'generate-sitemap: set PUBLIC_SITE_URL (or build on Vercel / Cloudflare Pages) so sitemap and robots URLs are correct.',
+  );
+  process.exit(1);
+}
 
 const langs = ['ar', 'en'];
 const paths = ['', 'about/', 'services/', 'contact/', 'privacy/'];
@@ -50,3 +54,11 @@ ${urls
 fs.mkdirSync(dist, { recursive: true });
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), xml.trim() + '\n', 'utf8');
 console.log('Wrote dist/sitemap.xml');
+
+const robots = `User-agent: *
+Allow: /
+
+Sitemap: ${SITE}/sitemap.xml
+`;
+fs.writeFileSync(path.join(dist, 'robots.txt'), robots, 'utf8');
+console.log('Wrote dist/robots.txt');

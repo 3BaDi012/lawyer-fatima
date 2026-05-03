@@ -1,8 +1,11 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import { resolveSiteUrl } from './scripts/site-url.mjs';
+
+const site = resolveSiteUrl();
 
 export default defineConfig({
-  site: 'https://REPLACE_WITH_YOUR_PAGES_DOMAIN.pages.dev',
+  ...(site ? { site } : {}),
   output: 'static',
   trailingSlash: 'always',
   integrations: [tailwind({ applyBaseStyles: false })],
