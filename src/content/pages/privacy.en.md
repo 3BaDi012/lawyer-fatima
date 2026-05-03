@@ -1,14 +1,14 @@
 ## Privacy notice
 
-This page explains how information submitted through this website is handled.
+This page briefly describes privacy-related aspects of using this website.
 
-### Contact form
+### External links
 
-When you use the contact form, data is transmitted to an external service provider to process the message and deliver it to the office. This site does not store your data on office-owned servers as part of the website itself.
+When you use phone, WhatsApp, or Google Maps links, you are taken to your device applications or service providers according to your settings.
 
-### Phone and WhatsApp
+### Email
 
-When you use phone or WhatsApp links, you are taken to your device applications or service providers according to your settings.
+When an email address is shown on the contact page and you use the link, your device’s mail client may open.
 
 ### Updates
 

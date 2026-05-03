@@ -42,11 +42,10 @@ npm run preview
 
 ## Environment variables
 
-Copy `.env.example` to `.env`:
+Copy `.env.example` to `.env` if you use optional variables:
 
 | Variable | Purpose |
 |----------|---------|
-| `PUBLIC_WEB3FORMS_ACCESS_KEY` | Web3Forms access key ([web3forms.com](https://web3forms.com)). |
 | `PUBLIC_SITE_URL` (optional) | Base URL for `dist/sitemap.xml` (defaults to the same placeholder as `site` in `astro.config.mjs`). |
 
 ## Deploy to Cloudflare Pages
@@ -56,17 +55,17 @@ Copy `.env.example` to `.env`:
 3. Build settings:
    - **Build command:** `npm run build`
    - **Build output directory:** `dist`
-4. Set **Environment variables** in Pages: `PUBLIC_WEB3FORMS_ACCESS_KEY` (and optionally `PUBLIC_SITE_URL`).
-5. Update **`site`** in `astro.config.mjs` to your real Pages URL (and align `PUBLIC_SITE_URL`, `public/robots.txt`, and Cloudflare DNS). This drives canonical URLs, Open Graph, JSON-LD, and the contact form redirect.
+4. Optionally set **`PUBLIC_SITE_URL`** in Pages if your sitemap should use a specific production URL during build.
+5. Update **`site`** in `astro.config.mjs` to your real Pages URL (and align `PUBLIC_SITE_URL`, `public/robots.txt`, and Cloudflare DNS). This drives canonical URLs, Open Graph, and JSON-LD.
 
 ## Content editing (file paths)
 
 | What to change | File |
 |----------------|------|
 | Office name, phone, WhatsApp, address, hours, maps queries, value proposition, home teaser | `src/content/data/site.json` |
-| Practice area copy (cards + service sections + form topics) | `src/content/data/practice-areas.json` |
+| Practice area copy (cards + service sections) | `src/content/data/practice-areas.json` |
 | Lawyer names, license numbers, bios, expertise | `src/content/data/team.json` |
-| UI labels (nav, buttons, form strings, footer labels) | `src/content/data/ui.json` |
+| UI labels (nav, buttons, footer labels) | `src/content/data/ui.json` |
 | Page `<title>` and meta descriptions | `src/content/data/seo.json` |
 | Long-form about copy | `src/content/pages/about.ar.md`, `src/content/pages/about.en.md` |
 | Privacy notice | `src/content/pages/privacy.ar.md`, `src/content/pages/privacy.en.md` |

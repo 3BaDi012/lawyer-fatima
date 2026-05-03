@@ -1,15 +1,15 @@
 {
   "ar": {
-    "homeTitle": "لمحامية فاطمة الشهري — استشارات قانونية ومحاماة في الخبر",
+    "homeTitle": "المحامية فاطمة الشهري — استشارات قانونية ومحاماة في الخبر",
     "homeDescription": "مكتب متخصص في المحاماة والتوثيق والتسجيل العقاري في الخبر، وفق الأنظمة المعمول بها في المملكة العربية السعودية.",
-    "aboutTitle": "عن المكتب — لمحامية فاطمة الشهري",
+    "aboutTitle": "عن المكتب — المحامية فاطمة الشهري",
     "aboutDescription": "معلومات عن المكتب ونهج العمل في تقديم الاستشارات والخدمات القانونية في الخبر.",
-    "servicesTitle": "الخدمات — لمحامية فاطمة الشهري",
+    "servicesTitle": "الخدمات — المحامية فاطمة الشهري",
     "servicesDescription": "وصف لمجالات عمل المكتب: المحاماة، التوثيق، والتسجيل العقاري.",
-    "contactTitle": "التواصل — لمحامية فاطمة الشهري",
-    "contactDescription": "العنوان وأوقات العمل والهاتف وواتساب ونموذج التواصل لمكتب الخبر.",
-    "privacyTitle": "سياسة الخصوصية — لمحامية فاطمة الشهري",
-    "privacyDescription": "معلومات عن معالجة البيانات عند استخدام نموذج التواصل والروابط الخارجية."
+    "contactTitle": "التواصل — المحامية فاطمة الشهري",
+    "contactDescription": "العنوان وأوقات العمل والهاتف وواتساب لمكتب الخبر.",
+    "privacyTitle": "سياسة الخصوصية — المحامية فاطمة الشهري",
+    "privacyDescription": "معلومات عن التصفح والروابط الخارجية على هذا الموقع."
   },
   "en": {
     "homeTitle": "Lawyer Fatima Al-Sheri — legal consultations in Al Khobar",
@@ -19,8 +19,8 @@
     "servicesTitle": "Services — Lawyer Fatima Al-Sheri",
     "servicesDescription": "An overview of the office’s practice areas: advocacy, documentation, and real estate registration.",
     "contactTitle": "Contact — Lawyer Fatima Al-Sheri",
-    "contactDescription": "Address, office hours, phone, WhatsApp, and the contact form for the Al Khobar office.",
+    "contactDescription": "Address, office hours, phone, and WhatsApp for the Al Khobar office.",
     "privacyTitle": "Privacy — Lawyer Fatima Al-Sheri",
-    "privacyDescription": "Information about data handling when using the contact form and external links."
+    "privacyDescription": "Information about browsing this site and use of external links."
   }
 }

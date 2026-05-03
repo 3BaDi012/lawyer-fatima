@@ -76,9 +76,6 @@ This file lists where each category of user-visible text lives. Template compone
 | Address under map | `site.json` → `addressAr` / `addressEn` |
 | Office hours lines + note | `site.json` → `officeHoursLinesAr` / `officeHoursLinesEn`, `officeHoursNoteAr` / `officeHoursNoteEn` |
 | Privacy link (inline) | `ui.json` → `navPrivacy` |
-| Form section title, field labels, submit, messages | `ui.json` (`form*`, `contactFormHeading`, `formSuccess`, …) |
-| Form topic options | `practice-areas.json` (each `titleAr` / `titleEn`) + `ui.json` → `formPracticeOther` |
-| Web3Forms configuration notice (when key missing) | `ui.json` → `formConfigNotice` |
 
 ## Privacy
 

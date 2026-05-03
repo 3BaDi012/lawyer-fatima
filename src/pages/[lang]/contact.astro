@@ -1,6 +1,5 @@
 ---
 import { Mail, MessageCircle, Phone } from 'lucide-astro';
-import ContactForm from '../../components/ContactForm.astro';
 import GoogleMap from '../../components/GoogleMap.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import seo from '../../content/data/seo.json';
@@ -101,10 +100,6 @@ const email = site.email.trim();
           </a>
         </p>
       </div>
-    </div>
-
-    <div class="mt-14">
-      <ContactForm lang={lang} />
     </div>
   </div>
 </SiteLayout>
