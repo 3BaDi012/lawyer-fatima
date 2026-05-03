@@ -10,7 +10,7 @@ const dist = path.join(root, 'dist');
 const SITE = resolveSiteUrl();
 if (!SITE) {
   console.error(
-    'generate-sitemap: set PUBLIC_SITE_URL (or build on Vercel / Cloudflare Pages) so sitemap and robots URLs are correct.',
+    'generate-sitemap: no site URL found. For Vercel: Project → Settings → Environment Variables → enable "Automatically expose System Environment Variables", or set PUBLIC_SITE_URL. For local builds: add PUBLIC_SITE_URL to .env',
   );
   process.exit(1);
 }

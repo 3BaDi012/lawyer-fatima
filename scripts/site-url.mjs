@@ -30,13 +30,20 @@ loadDotEnv();
  * Canonical site origin (no trailing slash) for Astro `site`, redirects, and sitemap.
  * Vercel sets VERCEL_URL (hostname only) on every build; use PUBLIC_SITE_URL for a custom domain.
  */
+function vercelOrigin() {
+  const trim = (value) => String(value).replace(/\/+$/, '').replace(/^https?:\/\//, '');
+  const host =
+    trim(process.env.VERCEL_URL || '') ||
+    trim(process.env.VERCEL_BRANCH_URL || '') ||
+    trim(process.env.VERCEL_PROJECT_PRODUCTION_URL || '');
+  return host ? `https://${host}` : '';
+}
+
 export function resolveSiteUrl() {
   const trim = (value) => String(value).replace(/\/+$/, '');
   if (process.env.PUBLIC_SITE_URL) return trim(process.env.PUBLIC_SITE_URL);
   if (process.env.CF_PAGES_URL) return trim(process.env.CF_PAGES_URL);
-  if (process.env.VERCEL_URL) {
-    const host = trim(process.env.VERCEL_URL).replace(/^https?:\/\//, '');
-    return `https://${host}`;
-  }
+  const vercel = vercelOrigin();
+  if (vercel) return vercel;
   return '';
 }
